@@ -3,6 +3,6 @@ public class Main {
         String[][] plateau = new String[10][10];
         ModifierPlateau.createPlateau(plateau);
         Affichage.printPlateau(plateau);
-        System.out.println("gfvydusgfuy");
+        System.out.println("hgdgj");
     }
 }
