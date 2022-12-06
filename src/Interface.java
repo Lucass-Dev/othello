@@ -48,5 +48,14 @@ public class Interface {
 
             choixJoueur = sc.nextInt();
         }
+
+        switch (choixJoueur){
+            case 5:
+                System.out.println("Au revoir !");
+                System.exit(0);
+                break;
+            default:
+                break;
+        }
     }
 }

@@ -36,6 +36,7 @@ public class Affichage {
             System.out.print("\t"+letter);
             letter++;
         }
+        System.out.println();
 
     }
 }
