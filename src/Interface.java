@@ -3,6 +3,8 @@ import java.util.Scanner;
 public class Interface {
     static final Scanner sc = new Scanner(System.in);
 
+
+
     public static void printMenuIngame(){
         System.out.println("Que voulez-vous faire ?" +
                 "\n\t-1 : Jouer" +
