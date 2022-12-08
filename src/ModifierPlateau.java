@@ -21,6 +21,112 @@ public class ModifierPlateau {
             plateau[line][col] = 2;
         }
     }
+
+    public static boolean peutPoser(int[][] plateau, int line ,int col, int joueur){
+
+        if(line ==0 && col == 0){  // coin up left
+
+            for (int i =col; i<col+2 ; i++){
+                if (plateau[line+1][i] == joueur) //Cas ou col =0, ligne inférieure
+                    return false;
+            }
+                if (plateau[line][col+1] == joueur) // cas ou col =0 , ligne médiane
+                    return false;
+            }
+
+        else if (line==0 && col==7 ){  // coin up right
+            for (int i =col-1; i<col+1 ; i++){
+                if (plateau[line+1][i] == joueur) // Cas où col =7, ligne inférieure
+                    return false;
+            }
+            if (plateau[line][col-1] == joueur) // cas où col =7 , ligne médiane
+                return false;
+
+        }
+
+        else if (line ==0) {  // bordure haute
+
+            for (int i =col-1; i<col+2 ; i++){
+                if (plateau[line+1][i] == joueur) // Cas où line =0 col !=0, ligne inférieure
+                    return false;
+            }
+            for (int i =col-1; i<col+2; i+=2){
+                if (plateau[line][i] == joueur)// cas où line =0 col !=0, ligne médiane
+                    return false;
+            }
+
+        }
+        else if (line ==7 && col ==0){ //coin down left
+            for (int i =col; i<col+2 ; i++){
+                if (plateau[line-1][i] == joueur) //Cas ou col =0, ligne supérieure
+                    return false;
+            }
+            if (plateau[line][col+1] == joueur) // cas ou col =0 , ligne médiane
+                return false;
+        }
+        else if (line==7 && col==7){ //coin down right
+            for (int i =col-1; i<col+1 ; i++){
+                if (plateau[line-1][i] == joueur) // Cas où col =7, ligne supérieure
+                    return false;
+            }
+            if (plateau[line][col-1] == joueur) // cas où col =7 , ligne médiane
+                return false;
+        }
+
+        else if (line==7){ //bordure basse
+            for (int i =col-1; i<col+2 ; i++){
+                if (plateau[line-1][i] == joueur) // Cas où line =7 col !=0 et 7, ligne supérieure
+                    return false;
+            }
+            for (int i =col-1; i<col+2; i+=2){
+                if (plateau[line][i] == joueur)// cas où line =7 col !=0 et 7, ligne médiane
+                    return false;
+            }
+        }
+
+        else if (col == 0){ //bordure gauche
+            for (int i =col; i<col+2 ; i++){
+                if (plateau[line-1][i] == joueur) //Cas ou col =0, ligne supérieure
+                    return false;
+            }
+            if (plateau[line][col+1] == joueur) // cas ou col =0 , ligne médiane
+                return true;
+            for (int i = col; i<col+2 ; i++){
+                if (plateau[line + 1][i] == joueur) //Cas ou col =0, ligne inférieure
+                    return false;
+            }
+        }
+        else if (col == 7){ //bordure droite
+            for (int i =col-1; i<col+1 ; i++){
+                if (plateau[line-1][i] == joueur) //Cas ou col =7, ligne supérieure
+                    return false;
+            }
+            if (plateau[line][col-1] == joueur) // cas ou col =7 , ligne médiane
+                return true;
+            for (int i = col; i<col+2 ; i++){
+                if (plateau[line + 1][i] == joueur) //Cas ou col =7, ligne inférieure
+                    return false;
+            }
+        }
+        else if (line<7 && line>0 && col<7 && col >0){  // ni coin ni bordure
+            for (int i =col-1; i<col+2 ; i++){
+                if (plateau[line-1][i] == joueur) //Cas ou col =0, ligne supérieure
+                    return false;
+            }
+            for (int i =col-1; i<col+2; i+=2) {
+                if (plateau[line][i] == joueur)// cas où line =0 col !=0, ligne médiane
+                    return false;
+            }
+
+            for (int i = col-1; i<col+2 ; i++) {
+                if (plateau[line + 1][i] == joueur) //Cas ou col =0, ligne inférieure
+                    return false;
+
+            }
+        }
+
+            return true;
+    }
 }
 //rond blanc ⚪ j1
 // rond noir ⚫ j2
