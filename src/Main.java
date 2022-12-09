@@ -3,7 +3,11 @@ public class Main {
         //Interface.printMenuPrincipal();
         //Interface.printMenuIngame();
         //Joueur.demanderCoords();
-
+        int[][] plateau = new int[8][8];
+        ModifierPlateau.createPlateau(plateau);
+        Affichage.printPlateau(plateau);
+        ModifierPlateau.placerPion(plateau, ModifierPlateau.switchStringToCoords("F5")[1], ModifierPlateau.switchStringToCoords("F5")[0], 2);
+        Affichage.printPlateau(plateau);
     }
 }
 
