@@ -7,6 +7,17 @@ public class OthelloTest {
 
     @Test
     public final void peutPoser(){
-        int[][] tabCommencement = {{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,1,2,0,0,0},{},{0,0,0,2,1,0,0,0},{0,0,0,0,0,0,0,0},{0,0,0,0,0,0,0,0}};
+        int[][] configPlusDePionPosable= {
+            {1, 0, 2, 2, 2, 2, 2, 2},
+            {1, 1, 2, 2, 2, 2, 2, 2},
+            {1, 1, 1, 1, 2, 2, 2, 2},
+            {1, 1, 2, 1, 2, 2, 2, 2},
+            {1, 1, 1, 2, 1, 2, 2, 2},
+            {1, 1, 2, 1, 2, 1, 2, 2},
+            {1, 1, 2, 2, 1, 2, 1, 2},
+            {1, 1, 1, 1, 1, 1, 1, 1}
+        };
+        assertTrue(Jeu.peutPoser(configPlusDePionPosable, 1));
+        assertFalse(Jeu.peutPoser(configPlusDePionPosable, 2));
     }
 }

@@ -1,5 +1,7 @@
 public class ModifierPlateau {
 
+    static int[][] directions = {{-1, -1},{-1, 0},{-1, 1},{0, -1},{0, 1},{1, -1},{1, 0},{1, 1}};
+
     public static void createPlateau(int[][] plateau){
 
         for (int i = 0; i < plateau.length; i++) {
@@ -7,7 +9,6 @@ public class ModifierPlateau {
                 plateau[i][j] = 0;
             }
         }
-
         plateau[3][3] = 2;
         plateau[3][4] = 1;
         plateau[4][3] = 1;
@@ -22,98 +23,95 @@ public class ModifierPlateau {
         }
     }
 
-    public static boolean peutPoser(int[][] plateau, int line ,int col, int joueur) {
+    public static boolean checkDirections(int[][] plateau, int lineBase, int colBase, int joueur){
+        int adversaire, cpt =0, line, col;
 
-        if (line == 0 && col == 0) {  // coin up left
-
-            for (int i = col; i < col + 2; i++) {
-                if (plateau[line + 1][i] == joueur) //Cas ou col =0, ligne inférieure
-                    return false;
-            }
-            if (plateau[line][col + 1] == joueur) // cas ou col =0 , ligne médiane
-                return false;
-        } else if (line == 0 && col == 7) {  // coin up right
-            for (int i = col - 1; i < col + 1; i++) {
-                if (plateau[line + 1][i] == joueur) // Cas où col =7, ligne inférieure
-                    return false;
-            }
-            if (plateau[line][col - 1] == joueur) // cas où col =7 , ligne médiane
-                return false;
-
-        } else if (line == 0) {  // bordure haute
-
-            for (int i = col - 1; i < col + 2; i++) {
-                if (plateau[line + 1][i] == joueur) // Cas où line =0 col !=0, ligne inférieure
-                    return false;
-            }
-            for (int i = col - 1; i < col + 2; i += 2) {
-                if (plateau[line][i] == joueur)// cas où line =0 col !=0, ligne médiane
-                    return false;
-            }
-
-        } else if (line == 7 && col == 0) { //coin down left
-            for (int i = col; i < col + 2; i++) {
-                if (plateau[line - 1][i] == joueur) //Cas ou col =0, ligne supérieure
-                    return false;
-            }
-            if (plateau[line][col + 1] == joueur) // cas ou col =0 , ligne médiane
-                return false;
-        } else if (line == 7 && col == 7) { //coin down right
-            for (int i = col - 1; i < col + 1; i++) {
-                if (plateau[line - 1][i] == joueur) // Cas où col =7, ligne supérieure
-                    return false;
-            }
-            if (plateau[line][col - 1] == joueur) // cas où col =7 , ligne médiane
-                return false;
-        } else if (line == 7) { //bordure basse
-            for (int i = col - 1; i < col + 2; i++) {
-                if (plateau[line - 1][i] == joueur) // Cas où line =7 col !=0 et 7, ligne supérieure
-                    return false;
-            }
-            for (int i = col - 1; i < col + 2; i += 2) {
-                if (plateau[line][i] == joueur)// cas où line =7 col !=0 et 7, ligne médiane
-                    return false;
-            }
-        } else if (col == 0) { //bordure gauche
-            for (int i = col; i < col + 2; i++) {
-                if (plateau[line - 1][i] == joueur) //Cas ou col =0, ligne supérieure
-                    return false;
-            }
-            if (plateau[line][col + 1] == joueur) // cas ou col =0 , ligne médiane
-                return true;
-            for (int i = col; i < col + 2; i++) {
-                if (plateau[line + 1][i] == joueur) //Cas ou col =0, ligne inférieure
-                    return false;
-            }
-        } else if (col == 7) { //bordure droite
-            for (int i = col - 1; i < col + 1; i++) {
-                if (plateau[line - 1][i] == joueur) //Cas ou col =7, ligne supérieure
-                    return false;
-            }
-            if (plateau[line][col - 1] == joueur) // cas ou col =7 , ligne médiane
-                return true;
-            for (int i = col; i < col + 2; i++) {
-                if (plateau[line + 1][i] == joueur) //Cas ou col =7, ligne inférieure
-                    return false;
-            }
-        } else if (line < 7 && line > 0 && col < 7 && col > 0) {  // ni coin ni bordure
-            for (int i = col - 1; i < col + 2; i++) {
-                if (plateau[line - 1][i] == joueur) //Cas ou col =0, ligne supérieure
-                    return false;
-            }
-            for (int i = col - 1; i < col + 2; i += 2) {
-                if (plateau[line][i] == joueur)// cas où line =0 col !=0, ligne médiane
-                    return false;
-            }
-
-            for (int i = col - 1; i < col + 2; i++) {
-                if (plateau[line + 1][i] == joueur) //Cas ou col =0, ligne inférieure
-                    return false;
-
-            }
+        if (joueur == 1){
+            adversaire=2;
+        }else if(joueur == 2){
+            adversaire=1;
+        }else{
+            adversaire = 0;
         }
 
-        return true;
+        for(int[] couple: directions){
+            line = lineBase + couple[0];
+            col = colBase + couple[1];
+            while (( line <= 7 && line >= 0) && (col <= 7 && col >= 0) && plateau[line][col] == adversaire ){
+                line+= couple[0];
+                col+= couple[1];
+            }
+
+            if (( line <= 7 && line >= 0) && (col <= 7 && col >= 0) && plateau[line][col] == joueur){
+                cpt+= reverse(plateau, lineBase + couple[0], colBase + couple[1], joueur, couple[0], couple[1] );
+            }
+        }
+        return cpt > 0;
+    }
+
+    public static int reverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
+        int adversaire, cpt = 0;
+
+        if (joueur == 1){
+            adversaire=2;
+        }else if(joueur == 2){
+            adversaire=1;
+        }else{
+            adversaire = 0;
+        }
+
+        while (plateau[line][col] == adversaire){
+            plateau[line][col] = joueur;
+            line+= directionX;
+            col+= directionY;
+            cpt++;
+        }
+        return cpt;
+    }
+
+
+    public static boolean simuleCheckDirections(int[][] plateau, int lineBase, int colBase, int joueur){
+        int adversaire, cpt =0, line, col;
+
+        if (joueur == 1){
+            adversaire=2;
+        }else if(joueur == 2){
+            adversaire=1;
+        }else{
+            adversaire = 0;
+        }
+
+        for(int[] couple: directions){
+            line = lineBase + couple[0];
+            col = colBase + couple[1];
+            while (( line <= 7 && line >= 0) && (col <= 7 && col >= 0) && plateau[line][col] == adversaire){
+                line+= couple[0];
+                col+= couple[1];
+            }
+
+            if (( line <= 7 && line >= 0) && (col <= 7 && col >= 0) && plateau[line][col] == joueur){
+                cpt+= simuleReverse(plateau, lineBase + couple[0], colBase + couple[1], joueur, couple[0], couple[1] );
+            }
+        }
+        return cpt > 0;
+    }
+    public static int simuleReverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
+        int adversaire, cpt = 0;
+
+        if (joueur == 1){
+            adversaire=2;
+        }else if(joueur == 2){
+            adversaire=1;
+        }else{
+            adversaire = 0;
+        }
+
+        while (plateau[line][col] == adversaire){
+            line+= directionX;
+            col+= directionY;
+            cpt++;
+        }
+        return cpt;
     }
 
     public static int[] switchStringToCoords(String coords){
@@ -123,5 +121,5 @@ public class ModifierPlateau {
         return coordsArray;
     }
 }
-//rond blanc ⚪ j1
-// rond noir ⚫ j2
+//rond blanc ⚪ o j1
+// rond noir ⚫ x j2
