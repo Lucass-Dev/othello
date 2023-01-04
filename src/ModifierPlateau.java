@@ -95,6 +95,7 @@ public class ModifierPlateau {
         }
         return cpt > 0;
     }
+
     public static int simuleReverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
         int adversaire, cpt = 0;
 

@@ -18,10 +18,10 @@ public class Affichage {
                         System.out.print("   |");
                         break;
                     case 1:
-                        System.out.print(" o |");
+                        System.out.print(" B |");
                         break;
                     case 2:
-                        System.out.print(" x |");
+                        System.out.print(" N |");
                         break;
                     default:
                         System.out.print("err");

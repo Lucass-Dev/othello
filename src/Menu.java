@@ -10,9 +10,15 @@ public class Menu {
     public static void printMenuIngame(int[][] plateau, int joueur, boolean peutJouer){
 
         int choixJoueur;
+        char couleur;
+        if (joueur==1){
+            couleur = 'B';
+        }else{
+            couleur = 'N';
+        }
 
         do {
-            System.out.println("Vous êtes le joueur "+ joueur +
+            System.out.println("Vous êtes le joueur "+ couleur +
                     " que voulez-vous faire ?" +
                     "\n\t-1 : Jouer" +
                     "\n\t-2 : Passer son tour" +
@@ -41,7 +47,8 @@ public class Menu {
                         coordsArray = ModifierPlateau.switchStringToCoords(Joueur.demanderCoords());
                     }
                     ModifierPlateau.placerPion(plateau, coordsArray[1], coordsArray[0], joueur);
-                    Affichage.printPlateau(plateau);
+                break;
+            case 2 :
                 break;
             default:
                 break;
@@ -57,7 +64,7 @@ public class Menu {
             System.out.println("Bienvenue dans Othello, que souhaitez-vous faire ?" +
                     "\n\t-1 : Jouer contre un Joueur" +
                     "\n\t-2 : Jouer contre l'IA (facile)" +
-                    "\n\t-3 : Jouer contre l'IA (difficile Insh'Allah)" +
+                    "\n\t-3 : Jouer contre l'IA (difficile)" +
                     "\n\t-4 : Lire les règles"+
                     "\n\t-5 : Quitter");
 

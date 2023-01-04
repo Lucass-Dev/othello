@@ -1,5 +1,8 @@
 public class Jeu {
     public static void boucleDeJeu(int[][] plateau, int joueur){
+        Affichage.printPlateau(plateau);
+        comptagePion(plateau);
+        boolean finDeJeu = false;
         while (true){
             /*
             peutJouer1 = true;
@@ -16,22 +19,20 @@ public class Jeu {
              */
             boolean peutJouer = true;
             if ( !peutPoser(plateau, 1) && !peutPoser(plateau, 2)){
-                finDeJeu();
-            }
-
-            if (joueur==1) {
+                finDeJeu(plateau);
+                break;
+            }else if (joueur==1) {
                 if (!peutPoser(plateau, 1)) {
                     peutJouer = false;
                 }
-            }
-
-            if (joueur==2) {
+            }else if (joueur==2) {
                if (!peutPoser(plateau, 2)) {
                     peutJouer = false;
                 }
             }
 
             Menu.printMenuIngame(plateau, joueur, peutJouer);
+
 
             if (joueur == 1){
                 joueur = 2;
@@ -57,7 +58,25 @@ public class Jeu {
         return coupsJouables > 0;
     }
 
-    public static void finDeJeu(){
-        System.out.println("Bravo à vous le jeu jeu est finit !");
+    public static void finDeJeu(int[][] plateau){
+        System.out.println("Bravo à vous le jeu est fini !" +
+                "\nVoici l'état du plateau");
+        Affichage.printPlateau(plateau);
+        System.out.println("Le gagnant est le joueur");
+    }
+
+    public static void comptagePion(int[][] plateau){
+        int compteurBlanc = 0, compteurNoir = 0;
+        for (int i = 0; i < plateau.length; i++) {
+            for (int j = 0; j < plateau.length; j++) {
+                if (plateau[i][j] == 1){
+                    compteurBlanc++;
+                }else if (plateau[i][j] == 2){
+                    compteurNoir++;
+                }
+            }
+        }
+        System.out.println("Blancs :" + compteurBlanc +
+                "\nNoirs : " + compteurNoir);
     }
 }
