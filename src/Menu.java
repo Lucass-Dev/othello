@@ -51,6 +51,7 @@ public class Menu {
                         coordsArray = ModifierPlateau.switchStringToCoords(Joueur.demanderCoords());
                     }
                     ModifierPlateau.placerPion(plateau, coordsArray[1], coordsArray[0], joueur);
+                    Affichage.printPlateau(plateau);
                 break;
             case 2 :
                 System.out.println("Vous passez votre tour.");
@@ -95,6 +96,10 @@ public class Menu {
                 int[][] plateau = new int[8][8];
                 ModifierPlateau.createPlateau(plateau);
                 Jeu.boucleDeJeu(plateau, 2);
+                break;
+
+            case 2:
+
                 break;
             case 5:
                 System.out.println("Au revoir !");

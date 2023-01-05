@@ -41,7 +41,44 @@ public class Jeu {
             }
         }
     }
+    public static void boucleDeJeuIA(int[][] plateau, int joueur){
+        Affichage.printPlateau(plateau);
+        comptagePion(plateau);
+        boolean finDeJeu = false;
+        while (true){
 
+            boolean peutJouer = true;
+
+            if ( !peutPoser(plateau, 1) && !peutPoser(plateau, 2)){
+                finDeJeu(plateau);
+                break;
+            }else if (joueur==1) {
+                if (!peutPoser(plateau, 1)) {
+                    peutJouer = false;
+                }
+            }else if (joueur==2) {
+                if (!peutPoser(plateau, 2)) {
+                    peutJouer = false;
+                }
+            }
+
+            Menu.printMenuIngame(plateau, joueur, peutJouer);
+
+
+            if (joueur == 2){
+                joueur = 1;
+            }
+
+            if (joueur==1){
+                IA.iaAvancee(plateau,2);
+                joueur=2;
+            }
+        }
+    }
+
+
+
+    // verifie sur tout le plateau si au moins un coup est jouable pour le joueur dont c'est le tour
     public static boolean peutPoser(int[][] plateau, int joueur){
         int coupsJouables = 0;
 
