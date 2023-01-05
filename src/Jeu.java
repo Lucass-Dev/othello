@@ -62,7 +62,27 @@ public class Jeu {
         System.out.println("Bravo à vous le jeu est fini !" +
                 "\nVoici l'état du plateau");
         Affichage.printPlateau(plateau);
-        System.out.println("Le gagnant est le joueur");
+        comptagePion(plateau);
+
+        System.out.print("Le gagnant est le joueur ");
+
+
+        int compteurBlanc = 0, compteurNoir = 0;
+
+        for (int i = 0; i < plateau.length; i++) {
+            for (int j = 0; j < plateau.length; j++) {
+                if (plateau[i][j] == 1){
+                    compteurBlanc++;
+                }else if (plateau[i][j] == 2){
+                    compteurNoir++;
+                }
+            }
+        }
+        if (compteurBlanc>compteurNoir)
+            System.out.println("Blanc !");
+        else
+            System.out.println("Noir !");
+
     }
 
     public static void comptagePion(int[][] plateau){
@@ -77,6 +97,21 @@ public class Jeu {
             }
         }
         System.out.println("Blancs :" + compteurBlanc +
-                "\nNoirs : " + compteurNoir);
+                "\nNoirs : " + compteurNoir + "\n \n ");
+    }
+
+
+    public static void Abandon(int joueur){
+
+        int vainqueur;
+
+        if (joueur==1){
+            System.out.println(" Joueur B abandone, Joueur N gagne ! ");
+        }
+        else {
+            System.out.println(" Joueur N abandone, Joueur B gagne ! ");
+        }
+        System.exit(0);
+
     }
 }

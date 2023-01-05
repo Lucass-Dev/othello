@@ -1,3 +1,4 @@
+import java.io.BufferedReader;
 import java.lang.module.ModuleFinder;
 import java.util.Scanner;
 
@@ -16,6 +17,8 @@ public class Menu {
         }else{
             couleur = 'N';
         }
+
+
 
         do {
             System.out.println("Vous êtes le joueur "+ couleur +
@@ -40,6 +43,7 @@ public class Menu {
         Affichage.printPlateau(plateau);
         switch (choixJoueur){
             case 1:
+                    Jeu.comptagePion(plateau);
                     int[] coordsArray;
                     coordsArray = ModifierPlateau.switchStringToCoords(Joueur.demanderCoords());
                     while (!ModifierPlateau.checkDirections(plateau, coordsArray[1], coordsArray[0], joueur)){
@@ -49,6 +53,17 @@ public class Menu {
                     ModifierPlateau.placerPion(plateau, coordsArray[1], coordsArray[0], joueur);
                 break;
             case 2 :
+                System.out.println("Vous passez votre tour.");
+                break;
+
+            case 3 :
+
+                break;
+
+            case 4 :
+                System.out.println("ok loser ");
+                Jeu.Abandon(joueur);
+
                 break;
             default:
                 break;

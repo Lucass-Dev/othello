@@ -46,27 +46,11 @@ public class ModifierPlateau {
                 cpt+= reverse(plateau, lineBase + couple[0], colBase + couple[1], joueur, couple[0], couple[1] );
             }
         }
+
+        if (plateau[lineBase][colBase] !=0){
+            cpt = 0 ;
+        }
         return cpt > 0;
-    }
-
-    public static int reverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
-        int adversaire, cpt = 0;
-
-        if (joueur == 1){
-            adversaire=2;
-        }else if(joueur == 2){
-            adversaire=1;
-        }else{
-            adversaire = 0;
-        }
-
-        while (plateau[line][col] == adversaire){
-            plateau[line][col] = joueur;
-            line+= directionX;
-            col+= directionY;
-            cpt++;
-        }
-        return cpt;
     }
 
 
@@ -93,8 +77,33 @@ public class ModifierPlateau {
                 cpt+= simuleReverse(plateau, lineBase + couple[0], colBase + couple[1], joueur, couple[0], couple[1] );
             }
         }
+
+        if (plateau[lineBase][colBase] !=0){
+            cpt = 0 ;
+        }
         return cpt > 0;
     }
+
+    public static int reverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
+        int adversaire, cpt = 0;
+
+        if (joueur == 1){
+            adversaire=2;
+        }else if(joueur == 2){
+            adversaire=1;
+        }else{
+            adversaire = 0;
+        }
+
+        while (plateau[line][col] == adversaire){
+            plateau[line][col] = joueur;
+            line+= directionX;
+            col+= directionY;
+            cpt++;
+        }
+        return cpt;
+    }
+
 
     public static int simuleReverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
         int adversaire, cpt = 0;
