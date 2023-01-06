@@ -2,6 +2,7 @@ public class ModifierPlateau {
 
     static int[][] directions = {{-1, -1},{-1, 0},{-1, 1},{0, -1},{0, 1},{1, -1},{1, 0},{1, 1}};
 
+    //Permet de créer le plateau de départ
     public static void createPlateau(int[][] plateau){
 
         for (int i = 0; i < plateau.length; i++) {
@@ -15,6 +16,7 @@ public class ModifierPlateau {
         plateau[4][4] = 1;
     }
 
+    //Change la valeur de la cellule en fonction du joueur passé en paramètres
     public static void placerPion(int[][] plateau, int line, int col, int joueur){
         if (joueur == 1){
             plateau[line][col] = 1;
@@ -22,7 +24,9 @@ public class ModifierPlateau {
             plateau[line][col] = 2;
         }
     }
-
+    //Retourne true si on l'appel de reverse successif est supérieur à 0
+    //Avec lineBase et colBase les coordonnées du pion posé
+    //En plus de retourner les pions de la couleur alliée avec l'appel de la fonction reverse
     public static boolean checkDirections(int[][] plateau, int lineBase, int colBase, int joueur){
         int adversaire, cpt =0, line, col;
 
@@ -53,7 +57,8 @@ public class ModifierPlateau {
         return cpt > 0;
     }
 
-
+    //Retourne true si on l'appel de simuleReverse successif est supérieur à 0
+    //Avec lineBase et colBase les coordonnées du pion posé
     public static boolean simuleCheckDirections(int[][] plateau, int lineBase, int colBase, int joueur){
         int adversaire, cpt =0, line, col;
 
@@ -84,6 +89,9 @@ public class ModifierPlateau {
         return cpt > 0;
     }
 
+    //retourne le nombre de pion qu'un coup pourrait retourner d'un coup avec line et col les coordonnées du pion posé
+    //X et Y le vecteur directeur
+    //En plus de retourner les pions dans la couleur alliée
     public static int reverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
         int adversaire, cpt = 0;
 
@@ -105,6 +113,8 @@ public class ModifierPlateau {
     }
 
 
+    //retourne le nombre de pion qu'un coup pourrait retourner d'un coup avec line et col les coordonnées du pion posé
+    //X et Y le vecteur directeur
     public static int simuleReverse(int[][] plateau, int line, int col, int joueur, int directionX, int directionY){
         int adversaire, cpt = 0;
 
@@ -124,6 +134,8 @@ public class ModifierPlateau {
         return cpt;
     }
 
+    //Retourne sous la forme d'un tableau à une dimension des coordonnées passées en paramètres (les coordonnées seront
+    // forcément sous la bonne forme
     public static int[] switchStringToCoords(String coords){
         int[] coordsArray = new int[2];
         coordsArray[0] = coords.charAt(0)-65;
@@ -131,5 +143,3 @@ public class ModifierPlateau {
         return coordsArray;
     }
 }
-//rond blanc ⚪ o j1
-// rond noir ⚫ x j2

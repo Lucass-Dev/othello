@@ -1,2 +1,17 @@
-Noir commence obligatoirement
-Obligé de poser un pion à côté d'un pion adverse et obligation de retourner un pion adverse
+Bienvenue dans Othello, il s'agit d'un jeu de stratégie à deux joueurs : Noirs et Blancs.
+
+But du jeu :
+    Avoir plus de pions de sa couleur que l’adversaire à la fin de la partie. Celle-ci s’achève lorsque aucun des deux
+    joueurs ne peut plus jouer de coup légal. Cela intervient généralement lorsque les 64 cases sont occupées.
+
+Pose de pion :
+    A son tour de jeu, le joueur doit poser un pion de sa couleur sur une case vide de l’othellier, adjacente à un pion
+    adverse. Il doit également, en posant son pion, encadrer un ou plusieurs pions adverses entre le pion qu’il pose et
+    un pion à sa couleur, déjà placé sur l’othellier. Cette prise en sandwich peut se faire aussi bien horizontalement
+    ou verticalement, qu’en diagnonale. Le joueur retourne le ou les pions qu’il vient d’encadrer, qui devient ainsi de
+    sa couleur. Les pions ne sont ni retirés de l’othellier, ni déplacés d’une case à l’autre.
+
+Fin de partie :
+    La partie est terminée lorsque aucun des deux joueurs ne peut plus jouer. Cela arrive généralement lorsque les 64 cases
+    sont occupées. Mais il se peut qu’il reste des cases vides où personne ne peut plus jouer : par exemple lorsque tous les
+    pions deviennent d’une même couleur après un retournement.

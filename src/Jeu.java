@@ -1,22 +1,12 @@
+import java.io.FileNotFoundException;
+
 public class Jeu {
-    public static void boucleDeJeu(int[][] plateau, int joueur){
+
+    //Méthode qui gère la boucle de jeu principale
+    public static void boucleDeJeu(int[][] plateau, int joueur) throws FileNotFoundException {
         Affichage.printPlateau(plateau);
         comptagePion(plateau);
-        boolean finDeJeu = false;
         while (true){
-            /*
-            peutJouer1 = true;
-            peutJouer2 = true;
-            if ( !peutPoser(plateau, 1) && !peutPoser(plateau, 2)){
-                //lanceer methode fin de jeu
-            } else if (!peutPoser(plateau, 1) && peutPoser(plateau, 2)) {
-                peutJouer1=false;
-            } else if (peutPoser(plateau, 1) && !peutPoser(plateau, 2)) {
-                peutJouer2 = false;
-            }else{
-                Menu.printMenuIngame(plateau, joueur, peutJouer);
-            }
-             */
             boolean peutJouer = true;
             if ( !peutPoser(plateau, 1) && !peutPoser(plateau, 2)){
                 finDeJeu(plateau);
@@ -41,7 +31,7 @@ public class Jeu {
             }
         }
     }
-    public static void boucleDeJeuIA(int[][] plateau, int joueur){
+    public static void boucleDeJeuIA(int[][] plateau, int joueur) throws FileNotFoundException {
         Affichage.printPlateau(plateau);
         comptagePion(plateau);
         boolean finDeJeu = false;
@@ -78,7 +68,8 @@ public class Jeu {
 
 
 
-    // verifie sur tout le plateau si au moins un coup est jouable pour le joueur dont c'est le tour
+    //Vérifie sur tout le plateau si au moins un coup est jouable pour le joueur dont c'est le tour
+    //Renvoie true si on peut poser au moins un pion sur le plateau (vérifie sur chaque case)
     public static boolean peutPoser(int[][] plateau, int joueur){
         int coupsJouables = 0;
 
@@ -95,6 +86,7 @@ public class Jeu {
         return coupsJouables > 0;
     }
 
+    //Gère la fin du jeu
     public static void finDeJeu(int[][] plateau){
         System.out.println("Bravo à vous le jeu est fini !" +
                 "\nVoici l'état du plateau");
@@ -122,6 +114,7 @@ public class Jeu {
 
     }
 
+    //Print le compte des pions de chaque joueur
     public static void comptagePion(int[][] plateau){
         int compteurBlanc = 0, compteurNoir = 0;
         for (int i = 0; i < plateau.length; i++) {
@@ -137,8 +130,8 @@ public class Jeu {
                 "\nNoirs : " + compteurNoir + "\n \n ");
     }
 
-
-    public static void Abandon(int joueur){
+    //Gère l'abandon
+    public static void abandon(int joueur){
 
         int vainqueur;
 

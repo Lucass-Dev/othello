@@ -1,21 +1,19 @@
-import java.io.BufferedReader;
-import java.lang.module.ModuleFinder;
+import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Menu {
 
     static Scanner sc = new Scanner(System.in).useDelimiter("\n");
 
-
-
-    public static void printMenuIngame(int[][] plateau, int joueur, boolean peutJouer){
+    //Gère le menu qui apparait à chaque tour de boucle du jeu
+    public static void printMenuIngame(int[][] plateau, int joueur, boolean peutJouer) throws FileNotFoundException {
 
         int choixJoueur;
         char couleur;
         if (joueur==1){
-            couleur = 'B';
+            couleur = '⬛';
         }else{
-            couleur = 'N';
+            couleur = '⬜';
         }
 
 
@@ -58,20 +56,20 @@ public class Menu {
                 break;
 
             case 3 :
-
+                Rules.lireRegles();
                 break;
 
             case 4 :
                 System.out.println("ok loser ");
-                Jeu.Abandon(joueur);
+                Jeu.abandon(joueur);
 
                 break;
             default:
                 break;
         }
     }
-
-    public static void printMenuPrincipal(){
+    //Gère le menu de début de partie
+    public static void printMenuPrincipal() throws FileNotFoundException {
 
         int choixJoueur;
 
@@ -97,9 +95,10 @@ public class Menu {
                 ModifierPlateau.createPlateau(plateau);
                 Jeu.boucleDeJeu(plateau, 2);
                 break;
-
             case 2:
-
+                break;
+            case 4:
+                Rules.lireRegles();
                 break;
             case 5:
                 System.out.println("Au revoir !");
