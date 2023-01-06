@@ -29,7 +29,7 @@ public class Menu {
             choixJoueur = sc.nextInt();
 
             if (choixJoueur >4 || choixJoueur<1){
-                System.out.println("Erreur de saisie !!!!");
+                System.out.println("Erreur de saisie !");
             }
 
             if ((choixJoueur==1 && !peutJouer)){
@@ -77,8 +77,8 @@ public class Menu {
 
             System.out.println("Bienvenue dans Othello, que souhaitez-vous faire ?" +
                     "\n\t-1 : Jouer contre un Joueur" +
-                    "\n\t-2 : Jouer contre l'IA (facile)" +
-                    "\n\t-3 : Jouer contre l'IA (difficile)" +
+                    "\n\t-2 : Jouer contre l'IA (facile)  ( Ya pas )" +
+                    "\n\t-3 : Jouer contre l'IA (difficile) ( Ca ya) " +
                     "\n\t-4 : Lire les règles"+
                     "\n\t-5 : Quitter");
 
@@ -95,7 +95,10 @@ public class Menu {
                 ModifierPlateau.createPlateau(plateau);
                 Jeu.boucleDeJeu(plateau, 2);
                 break;
-            case 2:
+            case 3:
+                int[][] plateau2 = new int[8][8];
+                ModifierPlateau.createPlateau(plateau2);
+                Jeu.boucleDeJeuIA(plateau2,2);
                 break;
             case 4:
                 Rules.lireRegles();

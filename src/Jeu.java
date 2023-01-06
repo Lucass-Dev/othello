@@ -34,7 +34,7 @@ public class Jeu {
     public static void boucleDeJeuIA(int[][] plateau, int joueur) throws FileNotFoundException {
         Affichage.printPlateau(plateau);
         comptagePion(plateau);
-        boolean finDeJeu = false;
+        //boolean finDeJeu = false;
         while (true){
 
             boolean peutJouer = true;
@@ -60,7 +60,7 @@ public class Jeu {
             }
 
             if (joueur==1){
-                IA.iaAvancee(plateau,2);
+                Ia.iaAvancee(plateau,1);
                 joueur=2;
             }
         }
@@ -100,9 +100,9 @@ public class Jeu {
 
         for (int i = 0; i < plateau.length; i++) {
             for (int j = 0; j < plateau.length; j++) {
-                if (plateau[i][j] == 1){
+                if (plateau[i][j] == 2){
                     compteurBlanc++;
-                }else if (plateau[i][j] == 2){
+                }else if (plateau[i][j] == 1){
                     compteurNoir++;
                 }
             }
@@ -119,9 +119,9 @@ public class Jeu {
         int compteurBlanc = 0, compteurNoir = 0;
         for (int i = 0; i < plateau.length; i++) {
             for (int j = 0; j < plateau.length; j++) {
-                if (plateau[i][j] == 1){
+                if (plateau[i][j] == 2){
                     compteurBlanc++;
-                }else if (plateau[i][j] == 2){
+                }else if (plateau[i][j] == 1){
                     compteurNoir++;
                 }
             }

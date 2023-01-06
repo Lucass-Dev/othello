@@ -18,10 +18,10 @@ public class Affichage {
                         System.out.print("   |");
                         break;
                     case 1:
-                        System.out.print(" ⬛ |");
+                        System.out.print(" N |"); //⬛
                         break;
                     case 2:
-                        System.out.print(" ⬜ |");
+                        System.out.print(" B |"); // ⬜
                         break;
                     default:
                         System.out.print("err");
