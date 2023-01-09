@@ -101,9 +101,9 @@ public class Jeu {
         for (int i = 0; i < plateau.length; i++) {
             for (int j = 0; j < plateau.length; j++) {
                 if (plateau[i][j] == 2){
-                    compteurBlanc++;
-                }else if (plateau[i][j] == 1){
                     compteurNoir++;
+                }else if (plateau[i][j] == 1){
+                    compteurBlanc++;
                 }
             }
         }
@@ -120,9 +120,9 @@ public class Jeu {
         for (int i = 0; i < plateau.length; i++) {
             for (int j = 0; j < plateau.length; j++) {
                 if (plateau[i][j] == 2){
-                    compteurBlanc++;
-                }else if (plateau[i][j] == 1){
                     compteurNoir++;
+                }else if (plateau[i][j] == 1){
+                    compteurBlanc++;
                 }
             }
         }

@@ -10,10 +10,10 @@ public class ModifierPlateau {
                 plateau[i][j] = 0;
             }
         }
-        plateau[3][3] = 1;
-        plateau[3][4] = 2;
-        plateau[4][3] = 2;
-        plateau[4][4] = 1;
+        plateau[3][3] = 2;
+        plateau[3][4] = 1;
+        plateau[4][3] = 1;
+        plateau[4][4] = 2;
     }
 
     //Change la valeur de la cellule en fonction du joueur passé en paramètres
